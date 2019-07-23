@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { reducer, initialState } from '../reducers/Reducer';
+import { reducer, initialState, CLEAR_COMPLETED } from '../reducers/Reducer';
 
 import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
@@ -21,10 +21,16 @@ function Todos() {
 
     // console.log('TODOS', todos)
 
+    const clearCompleted = e => {
+        e.preventDefault();
+        dispatch({ type: CLEAR_COMPLETED })
+    }
+
     return (
         <div>
             {todos.map(todo => <TodoItem todo={todo} toggleItem={toggleItem} />)}
             <TodoForm addItem={addItem} />
+            <button onClick={clearCompleted}>Clear Completed Tasks</button>
         </div>
     )
 }
